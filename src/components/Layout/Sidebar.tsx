@@ -7,7 +7,7 @@ import {
   ListItemIcon, 
   ListItemText, 
   useTheme,
-  Toolbar // Añade esta importación
+  Toolbar
 } from '@mui/material';
 import { 
   Dashboard as DashboardIcon,
@@ -45,9 +45,13 @@ const Sidebar = ({ mobileOpen, handleDrawerToggle }: SidebarProps) => {
         ModalProps={{ keepMounted: true }}
         sx={{
           display: { xs: 'block', sm: 'none' },
-          '& .MuiDrawer-paper': { width: drawerWidth },
+          '& .MuiDrawer-paper': { 
+            width: drawerWidth,
+            boxSizing: 'border-box',
+          },
         }}
       >
+        <Toolbar />
         <List>
           {menuItems.map((item) => (
             <ListItem key={item.text} disablePadding>
@@ -69,11 +73,16 @@ const Sidebar = ({ mobileOpen, handleDrawerToggle }: SidebarProps) => {
         variant="permanent"
         sx={{
           display: { xs: 'none', sm: 'block' },
-          '& .MuiDrawer-paper': { width: drawerWidth },
+          '& .MuiDrawer-paper': { 
+            width: drawerWidth,
+            boxSizing: 'border-box',
+            position: 'relative',
+            height: '100vh',
+          },
         }}
         open
       >
-        <Toolbar /> {/* Espacio para el Topbar */}
+        <Toolbar />
         <List>
           {menuItems.map((item) => (
             <ListItem key={item.text} disablePadding>

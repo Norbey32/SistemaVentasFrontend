@@ -9,11 +9,12 @@ interface TopbarProps {
 const Topbar = ({ handleDrawerToggle }: TopbarProps) => {
   return (
     <AppBar 
-      position="fixed" 
+      position="fixed"
       sx={{ 
         zIndex: (theme) => theme.zIndex.drawer + 1,
         width: { sm: `calc(100% - 240px)` },
         ml: { sm: '240px' },
+        height: '64px',
       }}
     >
       <Toolbar>

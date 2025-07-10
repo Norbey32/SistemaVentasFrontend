@@ -17,7 +17,7 @@ const Layout = ({ children }: LayoutProps) => {
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh' }}>
       <CssBaseline />
       <Topbar handleDrawerToggle={handleDrawerToggle} />
       <Sidebar mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />
@@ -27,9 +27,10 @@ const Layout = ({ children }: LayoutProps) => {
           flexGrow: 1,
           p: 3,
           width: { sm: `calc(100% - 240px)` },
+          marginLeft: { sm: '240px' },
+          marginTop: '64px', // Altura del AppBar
         }}
       >
-        <Toolbar /> {/* Espacio para el Topbar */}
         {children || <Outlet />}
       </Box>
     </Box>
