@@ -1,10 +1,12 @@
+// src/api/ventasApi.ts
 import axios from 'axios';
+import { Venta, CreateVentaDTO, UpdateVentaDTO } from '../types/types';
 
-const API_URL = 'http://localhost:8080/api';
+const API_URL = 'http://localhost:8080/api/ventas';
 
-export const getVentas = async () => {
+export const getVentas = async (): Promise<Venta[]> => {
   try {
-    const response = await axios.get(`${API_URL}/ventas`);
+    const response = await axios.get<Venta[]>(API_URL);
     return response.data;
   } catch (error) {
     console.error('Error fetching ventas:', error);
@@ -12,9 +14,19 @@ export const getVentas = async () => {
   }
 };
 
-export const createVenta = async (ventaData: any) => {
+export const getVentaById = async (id: number): Promise<Venta> => {
   try {
-    const response = await axios.post(`${API_URL}/ventas`, ventaData);
+    const response = await axios.get<Venta>(`${API_URL}/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching venta ${id}:`, error);
+    throw error;
+  }
+};
+
+export const createVenta = async (ventaData: CreateVentaDTO): Promise<Venta> => {
+  try {
+    const response = await axios.post<Venta>(API_URL, ventaData);
     return response.data;
   } catch (error) {
     console.error('Error creating venta:', error);
@@ -22,31 +34,24 @@ export const createVenta = async (ventaData: any) => {
   }
 };
 
-export const updateVenta = async (id: string, ventaData: any) => {
+export const updateVenta = async (id: number, ventaData: UpdateVentaDTO): Promise<Venta> => {
   try {
-    const response = await axios.put(`${API_URL}/ventas/${id}`, ventaData);
+    const response = await axios.put<Venta>(`${API_URL}/${id}`, ventaData);
     return response.data;
   } catch (error) {
-    console.error('Error updating venta:', error);
+    console.error(`Error updating venta ${id}:`, error);
     throw error;
   }
 };
 
-export const deleteVenta = async (id: string) => {
+export const deleteVenta = async (id: number): Promise<void> => {
   try {
-    const response = await axios.delete(`${API_URL}/ventas/${id}`);
-    return response.data;
+    await axios.delete(`${API_URL}/${id}`);
   } catch (error) {
-    console.error('Error deleting venta:', error);
+    console.error(`Error deleting venta ${id}:`, error);
     throw error;
   }
 };
-export const getVentaById = async (id: string) => {
-  try {
-    const response = await axios.get(`${API_URL}/ventas/${id}`);
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching venta by ID:', error);
-    throw error;
-  }
-};
+
+// Exportación vacía para TypeScript
+export {};
