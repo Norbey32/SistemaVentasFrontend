@@ -1,13 +1,18 @@
 // src/components/Layout/Layout.tsx
-import { useState } from 'react';
+import { useState, ReactNode } from 'react';
 import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
-import { Box, CssBaseline, useTheme } from '@mui/material';
+import { Box, CssBaseline } from '@mui/material';
 
-const Layout = () => {
+const drawerWidth = 240;
+
+interface LayoutProps {
+  children?: ReactNode;
+}
+
+const Layout = ({ children }: LayoutProps) => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const theme = useTheme();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -23,11 +28,11 @@ const Layout = () => {
         sx={{ 
           flexGrow: 1, 
           p: 3,
-          width: { sm: `calc(100% - ${theme.mixins.drawerWidth}px)` },
-          ml: { sm: `${theme.mixins.drawerWidth}px)` },
+          width: { sm: `calc(100% - ${drawerWidth}px)` },
+          ml: { sm: `${drawerWidth}px)` },
         }}
       >
-        <Outlet />
+        {children || <Outlet />}
       </Box>
     </Box>
   );
