@@ -8,7 +8,14 @@ interface TopbarProps {
 
 const Topbar = ({ handleDrawerToggle }: TopbarProps) => {
   return (
-    <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+    <AppBar 
+      position="fixed" 
+      sx={{ 
+        zIndex: (theme) => theme.zIndex.drawer + 1,
+        width: { sm: `calc(100% - 240px)` },
+        ml: { sm: '240px' },
+      }}
+    >
       <Toolbar>
         <IconButton
           color="inherit"
@@ -19,7 +26,7 @@ const Topbar = ({ handleDrawerToggle }: TopbarProps) => {
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" noWrap component="div">
+        <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
           Sistema de Ventas
         </Typography>
       </Toolbar>

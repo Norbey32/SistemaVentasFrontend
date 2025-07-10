@@ -1,14 +1,12 @@
 // src/components/Layout/Layout.tsx
-import { useState, ReactNode } from 'react';
+import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
-import { Box, CssBaseline } from '@mui/material';
-
-const drawerWidth = 240;
+import { Box, CssBaseline, Toolbar } from '@mui/material';
 
 interface LayoutProps {
-  children?: ReactNode;
+  children?: React.ReactNode;
 }
 
 const Layout = ({ children }: LayoutProps) => {
@@ -23,15 +21,15 @@ const Layout = ({ children }: LayoutProps) => {
       <CssBaseline />
       <Topbar handleDrawerToggle={handleDrawerToggle} />
       <Sidebar mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />
-      <Box 
-        component="main" 
-        sx={{ 
-          flexGrow: 1, 
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
           p: 3,
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
-          ml: { sm: `${drawerWidth}px)` },
+          width: { sm: `calc(100% - 240px)` },
         }}
       >
+        <Toolbar /> {/* Espacio para el Topbar */}
         {children || <Outlet />}
       </Box>
     </Box>
