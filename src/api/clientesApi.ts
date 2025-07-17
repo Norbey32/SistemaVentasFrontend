@@ -43,5 +43,15 @@ export const deleteCliente = async (id: number): Promise<void> => {
   }
 };
 
+export const getCliente = async (id: number): Promise<Cliente> => {
+  try {
+    const response = await axios.get<Cliente>(`${API_URL}/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching cliente ${id}:`, error);
+    throw error;
+  }
+};
+
 // Exportación vacía para resolver el error de isolatedModules
 export {};

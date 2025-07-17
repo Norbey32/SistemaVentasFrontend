@@ -2,7 +2,10 @@ import ClientesTable from '../components/Clientes/ClientesTable';
 
 const ClientesPage = () => {
   return (
-    <ClientesTable />
+    <div>
+      <h1>Clientes</h1>
+      <ClientesTable />
+    </div>
   );
 }
 
