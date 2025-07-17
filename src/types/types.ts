@@ -100,7 +100,17 @@ export interface CreateClienteDTO {
   direccion?: string;
 }
 
-export interface UpdateClienteDTO extends Partial<CreateClienteDTO> {}
+export interface UpdateClienteDTO {
+  id: number; // Asegúrate que esta propiedad exista
+  nombre: string;
+  apellido: string;
+  email: string;
+  telefono: string;
+  ciudad: string;
+  estado: string;
+  codigo_postal?: string;
+  direccion?: string;
+}
 
 export interface Categoria {
   categoria_id: number;
